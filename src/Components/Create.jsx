@@ -11,7 +11,7 @@ export default function Create() {
 const [user,setUser]=useState('')
 const [err,setErr]= useState('')
 const [ creatingRoom,setCreatingRoom] = useState('')
-
+const [numberCss,setNumberCss] = useState( Math.floor(Math.random() *3+1))
 const [gameId,setGameId] = useState('')
 
 
@@ -64,23 +64,28 @@ useEffect(() => {
 },[user])
 
 
+useEffect(() => {
+
+ 
+  
+}, []);
 
 
 
 
-
-  return (<div className='homepage-div'>
-    <h2>Tic Tac Toe Game</h2>
+  return (<div className='homepage-div'
+     style={numberCss === 1? {backgroundPosition:'left'} : {backgroundPosition:'right'}}>
+    <h2 className='simple-h2'>Tic Tac Toe Game</h2>
 
     <div className='create-room'> 
-        <h2> Create room 
+        <h2 className='h2'> Create room 
             </h2> 
-             {err} {creatingRoom} 
+             <p> {err} {creatingRoom} </p>
             <input type="text" onChange={(e) => setUser(e.target.value)} />
             <button className='btnstart' style={{marginTop:"20px"}} onClick={handleClick}> Create lobby </button>
              </div>
 
-            <div className='joins-room'> <h2> Join Room</h2> 
+            <div className='joins-room'> <h2 className='h2'> Join Room</h2> 
             <Friend/>
             </div>
          

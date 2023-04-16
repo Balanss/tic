@@ -61,11 +61,11 @@ getBoard()
 
 return <div>
 {board.map((board,i) => {   
-    if(board.zero  && board.three && board.six === "X"){
+    if(board.zero === "X"  && board.three === "X" && board.six === "X"){
       const docRef=doc(db,room,board.id);const payload = { Disabled : true,}; updateDoc(docRef, payload);
       return (  <div key={i}> <h2 className='wintitle'>{board.host}  Wins </h2>  </div>)
 
-    } else if (board.zero  && board.three  && board.six === "O"){
+    } else if (board.zero === "O" && board.three  === "O" && board.six === "O"){
       const docRef=doc(db,room,board.id);const payload = { Disabled : true}; updateDoc(docRef, payload);
       return (<div  key={i}> <h2 className='wintitle'>{board.friend} Wins </h2>   </div>)
 
@@ -124,7 +124,7 @@ return <div>
       } else if(board.six === "O" && board.seven === "O" && board.eight === "O"){
         const docRef=doc(db,room,board.id);const payload = { Disabled : true}; updateDoc(docRef, payload);
         return(<div key={i}> <h2 className='wintitle'>{board.friend} Wins </h2>   </div>)
-      } 
+      } else return console.log('no winner')
 
  })}
 </div>

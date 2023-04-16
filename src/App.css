@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Prism&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 .board{
     width: 80px;
     height: 100px;
@@ -39,6 +41,9 @@
 hr{
     width: 270px;
     position: absolute;
+    border-width: medium;
+    border-style: solid;
+    border-color: black;
  
 }
 
@@ -111,19 +116,70 @@ body,html {
 }
 
 
+input{
+    height: 35px;
+    border-style: double;
+    background-color: ghostwhite;
+    border-color: #9fb7ba;
+    border-width: thick;
+    border-radius: 10px;
+    cursor: pointer;
+    color: black;
+}
+
+.input:hover{
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15)
+     0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1)
+      0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 
+      0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,
+       rgba(0, 0, 0, 0.09) 0px 8px 4px,
+     rgba(0, 0, 0, 0.09) 0px 16px 8px,
+      rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+
+p{
+    font-family: 'Tilt Prism', cursive;
+    font-size: 20px;
+    text-shadow: #474747 3px 5px 2px;
+    color: #FFFFFF;
+    background-color: #0000006e;
+}
+
+h2, h3{
+    font-family: 'Anton', sans-serif;
+}
 
 .homepage-div{
     text-align: center;
     background-color: #245953;
 background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png");
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-    height: 550px;
+    height: 750px;
     padding-top: 30px;
     border-radius: 10px;
     position: relative;
     top: 200px;
     width: 80vw;
     margin: auto;
+    background-image: url('/tic/src/images/tic.webp');
+    background-size: cover;
+    background-blend-mode: hard-light;
+    background-repeat: inherit;
+}
+
+.simple-h2{
+    text-shadow: #474747 3px 5px 2px;
+    color: #FFFFFF;
+    background-color: #0000006e;
+}
+
+.h2{
+    text-shadow: #474747 3px 5px 2px;
+    color: #FFFFFF;
+    background-color: #00000038;
+    width: 186px;
+    border-radius: 10px;
 }
 
 .create-room{
@@ -175,13 +231,20 @@ background-image: url("https://www.transparenttextures.com/patterns/45-degree-fa
 }
 
 .grid{
-    background-color: slategrey;
+position: relative;
+top: 20px;
+margin: auto;
+margin-bottom: 25px;
+
+
+}
+
+.entireboard{
+    background-image: url("./images/boardpic.webp");
     width: 90vw !important;
     margin: auto !important;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
-    
-  
+   border-radius: 20px;
+   background-position: right;
 }
 
 .css-10mzr36-MuiGrid-root>.MuiGrid-item{
@@ -209,12 +272,10 @@ background-image: url("https://www.transparenttextures.com/patterns/45-degree-fa
 }
 
 .startandreset{
-    background-color: slategrey;
-    width: 288px;
+
+    width: 90vw;
     margin: auto;
     padding-bottom: 10px;
-    border-bottom-left-radius:20px;
-    border-bottom-right-radius:20px;
 }
 
 .btnstart  {
@@ -251,13 +312,23 @@ background-image: url("https://www.transparenttextures.com/patterns/45-degree-fa
     width: 300px;
 }
 
-.grid{
-    width: 500px !important;
+
+
+/* try different background-position with page refresh */
+.homepage-div{
+    width: 600px;
+    background-image: url('/tic/src/images/tic.webp');
+    background-size: auto;
+    background-blend-mode: hard-light;
+    background-repeat: inherit;
 }
 
 
+.entireboard{
+    width: 500px !important;
+    margin: auto;
+}
 .startandreset {
-    background-color: slategrey;
     width: 500px;
 }
 
@@ -269,6 +340,13 @@ background-image: url("https://www.transparenttextures.com/patterns/45-degree-fa
     padding: 5px;
     border-radius: 10px;
     font-size: 30px;
+}
+
+.joins-room{
+    
+    width: 300px;
+    margin: auto;
+
 }
 
 }

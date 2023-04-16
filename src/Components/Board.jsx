@@ -187,7 +187,7 @@ function I(){
 
 return (
 
-  <div>
+  <div className='entireboard'>
  
  
  {board.map((board,i) =>  {  
