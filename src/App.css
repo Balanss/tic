@@ -162,7 +162,7 @@ background-image: url("https://www.transparenttextures.com/patterns/45-degree-fa
     top: 200px;
     width: 80vw;
     margin: auto;
-    background-image: url(/tic/src/images/tic.webp);
+    background-image: url(/src/images/tic.webp);
     background-size: cover;
     background-blend-mode: hard-light;
     background-repeat: inherit;
@@ -240,7 +240,7 @@ margin-bottom: 25px;
 }
 
 .entireboard{
-    background-image: url(./images/boardpic.webp);
+    background-image: url(src/images/boardpic.webp);
     width: 90vw !important;
     margin: auto !important;
    border-radius: 20px;
