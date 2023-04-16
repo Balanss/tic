@@ -124,7 +124,7 @@ return <div>
       } else if(board.six === "O" && board.seven === "O" && board.eight === "O"){
         const docRef=doc(db,room,board.id);const payload = { Disabled : true}; updateDoc(docRef, payload);
         return(<div key={i}> <h2 className='wintitle'>{board.friend} Wins </h2>   </div>)
-      } else return console.log('no winner')
+      } 
 
  })}
 </div>

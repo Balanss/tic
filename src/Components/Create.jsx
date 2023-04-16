@@ -81,8 +81,11 @@ useEffect(() => {
         <h2 className='h2'> Create room 
             </h2> 
              <p> {err} {creatingRoom} </p>
-            <input type="text" onChange={(e) => setUser(e.target.value)} />
-            <button className='btnstart' style={{marginTop:"20px"}} onClick={handleClick}> Create lobby </button>
+             <div>
+             <input type="text" onChange={(e) => setUser(e.target.value)} />
+            <button className='btnstart' style={{marginTop:"20px"}} 
+            onClick={handleClick}> Create lobby </button> </div>
+            
              </div>
 
             <div className='joins-room'> <h2 className='h2'> Join Room</h2> 
