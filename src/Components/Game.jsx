@@ -59,7 +59,6 @@ const name = gameId
   
 
  return <div className='board-div'>
-  {player.map((player,i) =>{console.log(player.joined)})}
     <Suspense fallback={<h3> Creating game world</h3>}> 
     <div className='divforgamecode'> <h3> Copy game code  </h3> <h2 className='sendcode'>game{gameId}  </h2>  </div>
     <Board/>
