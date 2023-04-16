@@ -12,8 +12,8 @@ const Create = lazy(() => import ("./Components/Create"))
     <div className="App">
 <Router> <Suspense fallback={<h2> Loading ... </h2>}>  
   <Routes>
-   <Route path="/" element={<Create/>}></Route>
-   <Route path="/game" element={<Game/>}></Route>
+   <Route path="/tic" element={<Create/>}></Route>
+   <Route path="/tic/game" element={<Game/>}></Route>
   </Routes>
    </Suspense>
 </Router>
