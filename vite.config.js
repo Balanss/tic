@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // base:"https://balanss.github.io/tictacttoe/",
+   base:"https://balanss.github.io/tic/",
   plugins: [react()]
 })
