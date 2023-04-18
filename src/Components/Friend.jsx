@@ -68,10 +68,11 @@ useEffect(() => {
             <>
            
             <form onSubmit={handleRoom}>
-            <p> {error}  {loading} </p>
+            
             <input type="text"  onMouseLeave={(e)=> setJoinId(e.target.value)}/>
               <button style={{marginTop:'20px'}} className='btnstart'> Join Room  </button>
             </form>
+            <div style={{height:'30px',marginBottom: '20px'}}><p> {error} {loading}  </p> </div>
               
             
             </>

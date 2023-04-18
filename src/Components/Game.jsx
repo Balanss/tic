@@ -52,19 +52,22 @@ const name = gameId
  },[])
 
  
- 
-
-
-
   
-
+if(gameId !== ""){
  return <div className='board-div'>
-    <Suspense fallback={<h3> Creating game world</h3>}> 
-    <div className='divforgamecode'> <h3> Copy game code  </h3> <h2 className='sendcode'>game{gameId}  </h2>  </div>
-    <Board/>
-    </Suspense>
-    </div>
+ <Suspense fallback={<h3> Creating game world</h3>}> 
+ <div className='divforgamecode'> <h3> Copy game code  </h3> <h2 className='sendcode'>game{gameId}  </h2>  </div>
+ <Board/>
+ </Suspense>
+ </div>
 
+} else return (
+  <div className='board-div'>  
+  <Suspense fallback={<h3> Joining game world</h3>}> 
+ <div className='divforgamecode'> <h2 className='sendcode'> {player2} </h2>  </div>
+ <Board/>
+ </Suspense></div>
+)
    
   
 }

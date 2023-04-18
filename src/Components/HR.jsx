@@ -47,19 +47,19 @@ export default function HR() {
         return (<div key={i}>
          
         <div className='wincon4'> 
-         {board.zero === "X" && board.three === "X" && board.six === "X"? <hr/>:null} 
-         {board.zero === "O" && board.three === "O" && board.six === "O"? <hr/> :null} 
+         {board.zero === "X" && board.three === "X" && board.six === "X"? <hr className='winhr'/>:null} 
+         {board.zero === "O" && board.three === "O" && board.six === "O"? <hr className='winhr'/> :null} 
              </div>
                                                                                                             
   <div className='wincon1'>
-    {board.zero === "X" && board.one === "X" && board.two === "X"?  <hr/> :null}
-    {board.zero === "O" && board.one === "O" && board.two === "O"? <hr/>:null} 
+    {board.zero === "X" && board.one === "X" && board.two === "X"?  <hr className='winhr'/> :null}
+    {board.zero === "O" && board.one === "O" && board.two === "O"? <hr className='winhr'/>:null} 
      </div>
 
 
   <div className='wincon6'> 
-  {board.five === "X" && board.two === "X" && board.eight === "X"? <hr />:null} 
-   {board.five === "O" && board.two === "O" && board.eight === "O"? <hr/>:null} 
+  {board.five === "X" && board.two === "X" && board.eight === "X"? <hr  className='winhr'/>:null} 
+   {board.five === "O" && board.two === "O" && board.eight === "O"? <hr className='winhr'/>:null} 
    </div>
 
    <div className='wincon7'>    
@@ -73,17 +73,17 @@ export default function HR() {
       </div>
 
       <div className='wincon5'>  
-     {board.one === "X" && board.four === "X" && board.seven === "X"? <hr/>:null} 
-     {board.one === "O" && board.four === "O" && board.seven === "O"? <hr/>:null} 
+     {board.one === "X" && board.four === "X" && board.seven === "X"? <hr className='winhr'/>:null} 
+     {board.one === "O" && board.four === "O" && board.seven === "O"? <hr className='winhr'/>:null} 
       </div>
       <div className='wincon2'>
-      {board.three === "X" && board.four === "X" && board.five === "X"? <hr/>:null} 
-      {board.five === "O" && board.four === "O" && board.three === "O"? <hr/>:null} 
+      {board.three === "X" && board.four === "X" && board.five === "X"? <hr className='winhr'/>:null} 
+      {board.five === "O" && board.four === "O" && board.three === "O"? <hr className='winhr'/>:null} 
       </div>
 
       <div className='wincon3'>  
-      {board.six === "X" && board.seven === "X" && board.eight === "X"? <hr/>:null} 
-      {board.six === "O" && board.seven === "O" && board.eight === "O"? <hr/>:null} 
+      {board.six === "X" && board.seven === "X" && board.eight === "X"? <hr className='winhr'/>:null} 
+      {board.six === "O" && board.seven === "O" && board.eight === "O"? <hr className='winhr'/>:null} 
       </div>
 
         </div>)

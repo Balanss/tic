@@ -41,14 +41,24 @@
 hr{
     width: 270px;
     position: absolute;
-    border-width: medium;
+    border-width: thin;
     border-style: solid;
     border-color: black;
  
 }
 
+
+.winhr{
+    border-width: thick;
+}
+
+.windiv{
+    height: 50px;
+}
+
 .hr-dia{
     width: 407px;
+    border-width: thick;
 
 }
 
@@ -145,6 +155,7 @@ p{
     text-shadow: #474747 3px 5px 2px;
     color: #FFFFFF;
     background-color: #0000006e;
+    border-radius: 10px;
 }
 
 h2, h3{
@@ -183,22 +194,29 @@ background-image: url("https://www.transparenttextures.com/patterns/45-degree-fa
 }
 
 .create-room{
+    width: 50vw;
+    margin: auto;
+    padding-bottom: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .joins-room{
+    width: 50vw;
+    margin: auto;
+    padding-bottom: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 30px;
 }
 
 .board-div{
     text-align: center;
     position: relative;
     top: 10px;
+    background-color: #8fa3b4;
+    padding-bottom: 50px;
 }
 
 .divforgamecode{
@@ -227,6 +245,7 @@ background-image: url("https://www.transparenttextures.com/patterns/45-degree-fa
     border-radius: 10px;
     font-size: 30px;
     margin-top: 10px;
+    height: 50px;
 }
 
 .grid{
@@ -305,6 +324,21 @@ margin-bottom: 25px;
 
 
 @media screen and (min-width: 768px) {
+
+
+    .create-room{
+        width: 500px;
+    }
+
+    .creatediv{
+        display: flex;
+        flex-direction: column;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+    }
 
 .divforgamecode{
     width: 300px;

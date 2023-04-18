@@ -25,10 +25,10 @@ useEffect(() =>{
 
 function handleClick(){
    if (user === ''){
-     setErr('Please type in a name to create lobby')
+     setErr('Username needed!!')
     setTimeout(() => {setErr("")},4000)
    } else {
-    setCreatingRoom('Creating a lobby...Please wait')
+    setCreatingRoom('Creating lobby')
     const colRef=collection(db,'game'+user)
    addDoc(colRef, {
     name:user,
@@ -78,17 +78,20 @@ useEffect(() => {
     <h2 className='simple-h2'>Tic Tac Toe Game</h2>
 
     <div className='create-room'> 
-        <h2 className='h2'> Create room 
-            </h2> 
-             <p> {err} {creatingRoom} </p>
-             <div>
+        <h2 className='h2'> Create room</h2> 
+             <div className='creatediv'>
              <input type="text" onChange={(e) => setUser(e.target.value)} />
             <button className='btnstart' style={{marginTop:"20px"}} 
             onClick={handleClick}> Create lobby </button> </div>
-            
+
+            <div style={{height:'30px',marginBottom:'20px'}}>
+            <p> {err} </p>
+             <p> {creatingRoom} </p>
+              </div> 
              </div>
 
             <div className='joins-room'> <h2 className='h2'> Join Room</h2> 
+            
             <Friend/>
             </div>
          

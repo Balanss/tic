@@ -20,6 +20,7 @@ const [friend,setFriend] = useState(localStorage.getItem('player2'))
 const [playerOne,setPlayerOne] = useState("X")
 const [playerTwo,setPlayerTwo] = useState('O')
 const [ lobby,setLobby]= useState('')
+const [ a ,setA]= useState("")
 
 
 useEffect(() => {
@@ -82,7 +83,9 @@ function handleStart() {
     const lobby = board.id
     const lobbyId = 'game'+board.host
     const docRef=doc(db,lobbyId,lobby);
-    const payload = { Disabled : false,}
+    const payload = { DisabledZero: false,
+      DisabledOne: false,DisabledTwo: false,DisabledThree: false,DisabledFour: false,DisabledFive: false,DisabledSix: false,
+      DisabledSeven: false,DisabledEight: false,}
     updateDoc(docRef, payload);
   })
 
@@ -97,7 +100,9 @@ function handleStart() {
       const lobby = board.id
       const lobbyId = 'game'+board.host
       const docRef=doc(db,lobbyId,lobby);
-      const payload = { one : " ",two:"" ,three: "",four: "",five: "",six: "",seven:"",eight:"",nine:'',zero:'',Disabled: false,}
+      const payload = { one : " ",two:"" ,three: "",four: "",five: "",six: "",seven:"",eight:"",nine:'',zero:'',DisabledZero: false,
+      DisabledOne: false,DisabledTwo: false,DisabledThree: false,DisabledFour: false,DisabledFive: false,DisabledSix: false,
+      DisabledSeven: false,DisabledEight: false,}
       updateDoc(docRef, payload);
      
     })
@@ -109,18 +114,18 @@ function A(){
 board.map((board) => {
   const lobby = board.id
   const lobbyId = 'game'+board.host
-  const docRef=doc(db,lobbyId,lobby); const payload = buddy=== ''?  { zero :"X"}:{zero:"O"}; updateDoc(docRef, payload);
+  const docRef=doc(db,lobbyId,lobby); const payload = buddy === ''?  { DisabledZero:true, zero :"X"}:{DisabledZero:true,zero:"O"}; updateDoc(docRef, payload);
 })
 
-
-
 }
+
+
 
 function B(){
   board.map((board) => {
     const lobby = board.id
     const lobbyId = 'game'+board.host
-    const docRef=doc(db,lobbyId,lobby); const payload = buddy=== ''? { one : playerOne }:{one:playerTwo}; updateDoc(docRef, payload);
+    const docRef=doc(db,lobbyId,lobby); const payload = buddy=== ''? { DisabledOne: true , one : playerOne }:{DisabledOne: true ,one:playerTwo}; updateDoc(docRef, payload);
   })
 
 
@@ -130,7 +135,7 @@ function C(){
   board.map((board) => {
     const lobby = board.id
     const lobbyId = 'game'+board.host
-    const docRef=doc(db,lobbyId,lobby); const payload = buddy=== ''? { two : playerOne }:{two:playerTwo}; updateDoc(docRef, payload);
+    const docRef=doc(db,lobbyId,lobby); const payload = buddy=== ''? { DisabledTwo: true , two : playerOne }:{DisabledTwo: true ,two:playerTwo}; updateDoc(docRef, payload);
   })
 
 }
@@ -139,35 +144,35 @@ function D(){
   board.map((board) => {
     const lobby = board.id
     const host = 'game'+board.host
-    const docRef=doc(db,host,board.id); const payload = buddy=== ''? { three:playerOne  }: {three:playerTwo}; updateDoc(docRef, payload);
+    const docRef=doc(db,host,board.id); const payload = buddy=== ''? {DisabledThree: true ,three:playerOne  }: {DisabledThree: true ,three:playerTwo}; updateDoc(docRef, payload);
   })
 }
 
 function E(){
   board.map((board) => {
     const host = 'game'+board.host
-    const docRef=doc(db,host,board.id); const payload = buddy=== ''? { four: playerOne }:{ four:playerTwo}; updateDoc(docRef, payload);
+    const docRef=doc(db,host,board.id); const payload = buddy=== ''? {DisabledFour: true , four: playerOne }:{ DisabledFour: true ,four:playerTwo}; updateDoc(docRef, payload);
   })
 }
 
 function F(){
   board.map((board) => {
     const host = 'game'+board.host
-    const docRef=doc(db,host,board.id); const payload = buddy=== ''? { five :playerOne  }:{five:playerTwo}; updateDoc(docRef, payload);
+    const docRef=doc(db,host,board.id); const payload = buddy=== ''? { DisabledFive: true ,five :playerOne  }:{DisabledFive: true ,five:playerTwo}; updateDoc(docRef, payload);
   })
 }
 
 function G(){
   board.map((board) => {
     const host = 'game'+board.host
-    const docRef=doc(db,host,board.id); const payload = buddy=== ''? { six:playerOne }:{six:playerTwo}; updateDoc(docRef, payload);
+    const docRef=doc(db,host,board.id); const payload = buddy=== ''? { DisabledSix: true ,six:playerOne }:{DisabledSix: true ,six:playerTwo}; updateDoc(docRef, payload);
   })
 }
 
 function H(){
   board.map((board) => {
     const host = 'game'+board.host
-    const docRef=doc(db,host,board.id); const payload = buddy=== ''? { seven:playerOne }:{seven:playerTwo}; updateDoc(docRef, payload);
+    const docRef=doc(db,host,board.id); const payload = buddy=== ''? { DisabledSeven: true ,seven:playerOne }:{DisabledSeven: true ,seven:playerTwo}; updateDoc(docRef, payload);
 
   })
 }
@@ -175,7 +180,7 @@ function H(){
 function I(){
   board.map((board) => {
     const host = 'game'+board.host
-    const docRef=doc(db,host,board.id); const payload = buddy=== ''? { eight:playerOne }:{eight:playerTwo}; updateDoc(docRef, payload);
+    const docRef=doc(db,host,board.id); const payload = buddy=== ''? { DisabledEight: true , eight:playerOne }:{ DisabledEight: true ,eight:playerTwo}; updateDoc(docRef, payload);
 
   })
 }
@@ -194,15 +199,8 @@ return (
     if(board.joined === false) {
       return null
     } else {
-      return <div key={i}> <Box> 
-   
-      {/* <h2>  {buddy} </h2>
-      
-      <h2> {host} </h2> */}
-      
-     
-    
-      <div>  <Functions/> </div>
+      return <div key={i}> <Box>     
+      <div><Functions/> </div>
       
       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='grid'> 
       <Grid item xs={12}>
@@ -212,9 +210,9 @@ return (
       
     <hr className='rightline'/>
     <hr className='leftline'/>
-         <button className='board' disabled={board.Disabled} onClick={() => {A() }}> {board.zero}  </button> 
-         <button className='board'  disabled={board.Disabled}  onClick={() => {B() }}> {board.one} </button> 
-         <button className='board'  disabled={board.Disabled}  onClick={() => {C() }}> {board.two} </button>   </div>
+         <button className='board' disabled={board.DisabledZero} onClick={() => {A() }}> {board.zero}  </button> 
+         <button className='board'  disabled={board.DisabledOne}  onClick={() => {B() }}> {board.one} </button> 
+         <button className='board'  disabled={board.DisabledTwo}  onClick={() => {C() }}> {board.two} </button>   </div>
         
       </Grid>
       <Grid item xs={12}>
@@ -222,23 +220,23 @@ return (
       <div className='btn-div'> 
       <hr style={{marginTop:'-130px'}} className='hrfield'/>
       <hr style={{marginTop:'120px'}} className='hrfield'/>
-      <button className='board' disabled={board.Disabled}  onClick={() => {D() }}> {board.three} </button>
-      <button className='board'  disabled={board.Disabled}  onClick={() =>{E() }}> {board.four} </button>
-      <button className='board'  disabled={board.Disabled}  onClick={() =>{F() }}> {board.five} </button> </div>
+      <button className='board' disabled={board.DisabledThree}  onClick={() => {D() }}> {board.three} </button>
+      <button className='board'  disabled={board.DisabledFour}  onClick={() =>{E() }}> {board.four} </button>
+      <button className='board'  disabled={board.DisabledFive}  onClick={() =>{F() }}> {board.five} </button> </div>
     
       </Grid>
       <Grid item xs={12}>
     
       <div className='btn-div'>
-      <button className='board'  disabled={board.Disabled}  onClick={() => {G() }}> {board.six} </button>
-      <button className='board'  disabled={board.Disabled}  onClick={() => {H() }}> {board.seven} </button>
-      <button className='board' disabled={board.Disabled}  onClick={() => {I() }}> {board.eight} </button> </div>
+      <button className='board'  disabled={board.DisabledSix}  onClick={() => {G() }}> {board.six} </button>
+      <button className='board'  disabled={board.DisabledSeven}  onClick={() => {H() }}> {board.seven} </button>
+      <button className='board' disabled={board.DisabledEight}  onClick={() => {I() }}> {board.eight} </button> </div>
     
       </Grid>
       </Grid>
        </Box> 
        <div className='startandreset'>
-       <button style={{width:'200px',marginBottom:'20px'}} className="btnstart" onClick={handleStart} > Start Game </button>
+       <button style={{width:'120px',marginBottom:'20px'}} className="btnstart" onClick={handleStart} > Start Game </button>
        <button className="btnstart" onClick={handleReset} > Reset Game </button>
        </div>
      
@@ -247,7 +245,7 @@ return (
     }
    
    })}
- 
+
   </div>
 )
 
