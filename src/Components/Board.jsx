@@ -1,5 +1,5 @@
 import React,{useEffect,useState,lazy} from 'react'
-import {collection,addDoc,onSnapshot,doc,query,updateDoc} from "firebase/firestore";
+import {collection,addDoc,onSnapshot,doc,updateDoc,getDocs} from "firebase/firestore";
 import {db} from "../Firebase"
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
@@ -8,6 +8,8 @@ import Box from '@mui/material/Box';
 import Functions from './Functions';
 import HR from './HR';
 import useLocalStorage from 'use-local-storage';
+import { Link ,  useNavigate }from "react-router-dom"
+
 
 
 
@@ -15,20 +17,60 @@ import useLocalStorage from 'use-local-storage';
 export default function Board() {
 
 
-const [gameId,setGameId] = useState('')
-const [friend,setFriend] = useState(localStorage.getItem('player2'))
+const [gameId,setGameId] = useState(localStorage.getItem('name'))
 const [playerOne,setPlayerOne] = useState("X")
-const [playerTwo,setPlayerTwo] = useState('O')
-const [ lobby,setLobby]= useState('')
-const [ a ,setA]= useState("")
+const [ a ,setA]= useState(-1)
+const [board,setBoard] = useState([]);
+const [board2,setBoard2] = useState([]);
+const [board3,setBoard3] = useState([]);
+const [board4,setBoard4] = useState([]);
+const [board5,setBoard5] = useState([]);
+const [board6,setBoard6] = useState([]);
+const [board7,setBoard7] = useState([]);
+const [board8,setBoard8] = useState([]);
+const [board9,setBoard9] = useState([]);
+const navigate = useNavigate()
+const [ returns,setReturns] = useState();
+const [zz,setZz] = useState([])
+const [ turn,setTurn] = useState([])
+const [ randomNumber,setRandomNumber] = useState(Math.floor(Math.random()*2 +1 ))
+
+
+
 
 
 useEffect(() => {
-  setLobby(localStorage.getItem('lobby')) 
-},[])
-
-useEffect(() => {
-setGameId(localStorage.getItem('name'))
+  const docRef = doc(db, 'game'+gameId,'game'+gameId);
+  const unSub = onSnapshot(docRef,(docSnap) => {
+    if(docSnap.exists()) {
+      const startGame = docSnap.data().setOne || [];
+      const startGame2 = docSnap.data().setTwo || [];
+      const startGame3 = docSnap.data().setThree || [];
+      const startGame4 = docSnap.data().setFour || [];
+      const startGame5 = docSnap.data().setFive || [];
+      const startGame6 = docSnap.data().setSix || [];
+      const startGame7 = docSnap.data().setSeven || [];
+      const startGame8 = docSnap.data().setEight || [];
+      const startGame9 = docSnap.data().setNine || [];
+      const startzz = docSnap.data().Disabled || [];
+      const playerTurn = docSnap.data().join || [];
+      setBoard(startGame);
+      setBoard2(startGame2);
+      setBoard3(startGame3);
+      setBoard4(startGame4);
+      setBoard5(startGame5);
+      setBoard6(startGame6);
+      setBoard7(startGame7);
+      setBoard8(startGame8);
+      setBoard9(startGame9);
+      setZz(startzz);
+      setTurn(playerTurn);  
+      setReturns(false);
+    } else {
+      setReturns(true);
+    }
+    })
+  return unSub
 },[gameId])
 
 
@@ -39,214 +81,168 @@ setGameId(localStorage.getItem('name'))
 
 
 
-const [ board,setBoard]= useState([])
-  useEffect(() => {
-   if(gameId !== ""){
-    const getBoard = async () => {
-      const colRef = (collection(db,'game'+gameId));
-      const q = query(colRef);
-      onSnapshot(q,(snapshot) => {
-          setBoard(snapshot.docs.map((doc) => ({...doc.data(),id :doc.id})))
-      })
-      
-  }
- getBoard()
-
-   } if (gameId === ""){
-    const getBoard = async () => {
-      const colRef = (collection(db,lobby));
-      const q = query(colRef);
-      onSnapshot(q,(snapshot) => {
-          setBoard(snapshot.docs.map((doc) => ({...doc.data(),id :doc.id})))
-      });
-     
-  }
-   getBoard()
-   } 
-    
- },[lobby,gameId])
-
-
-
- let host = gameId
-let buddy = friend 
-
-
-// useEffect(() => {
-//   const random = Math.floor(Math.random()*2 +1)
-// setRandomNumber(random)
-// },[])
-
 
 function handleStart() {
-  board.map((board) => {
-    const lobby = board.id
-    const lobbyId = 'game'+board.host
-    const docRef=doc(db,lobbyId,lobby);
-    const payload = { DisabledZero: false,
-      DisabledOne: false,DisabledTwo: false,DisabledThree: false,DisabledFour: false,DisabledFive: false,DisabledSix: false,
-      DisabledSeven: false,DisabledEight: false,}
-    updateDoc(docRef, payload);
-  })
-
-}
-
-//  const count =   points.reduce((acc,current) => acc + current,0)
-//  const countSum =   points.reduce((acc,current) => acc + current,0)
-
-
-  function handleReset() {
-    board.map((board) => {
-      const lobby = board.id
-      const lobbyId = 'game'+board.host
-      const docRef=doc(db,lobbyId,lobby);
-      const payload = { one : " ",two:"" ,three: "",four: "",five: "",six: "",seven:"",eight:"",nine:'',zero:'',DisabledZero: false,
-      DisabledOne: false,DisabledTwo: false,DisabledThree: false,DisabledFour: false,DisabledFive: false,DisabledSix: false,
-      DisabledSeven: false,DisabledEight: false,}
-      updateDoc(docRef, payload);
-     
-    })
-
-   
-  }
   
-function A(){
-board.map((board) => {
-  const lobby = board.id
-  const lobbyId = 'game'+board.host
-  const docRef=doc(db,lobbyId,lobby); const payload = buddy === ''?  { DisabledZero:true, zero :"X"}:{DisabledZero:true,zero:"O"}; updateDoc(docRef, payload);
-})
+  setRandomNumber(Math.floor(Math.random()*2 +1 ))
+  updateDoc(docRefAll, { setOne:{ one:"",id:1,}}),
+  updateDoc(docRefAll, { setTwo:{ two:"",id:2, }}),
+  updateDoc(docRefAll, { setThree:{ three:"",id:3, } }),
+  updateDoc(docRefAll, { setFour:{ four:"",id:4, } }),
+  updateDoc(docRefAll, { setFive:{ five:"",id:5, } }),
+  updateDoc(docRefAll, { setSix:{ six:"",id:6, } }),
+  updateDoc(docRefAll, { setSeven:{ seven:"",id:7, } }),
+  updateDoc(docRefAll, { setEight:{ eight:"",id:8, } }),
+  updateDoc(docRefAll, { setNine:{ nine:"",id:9, } }),
+  updateDoc(docRefAll, { Disabled:{ Disabled:false}}),
+  updateDoc(docRefAll, { join:{ playerTurn:randomNumber,friend:'game'+gameId,host:gameId,joined:true,lobby:'game'+gameId}})
+  setA(0)
+};
 
+
+// //  const count =   points.reduce((acc,current) => acc + current,0)
+// //  const countSum =   points.reduce((acc,current) => acc + current,0)
+
+
+  // function handleReset() {
+  //   updateDoc(docRefAll, { setOne:{ one:"",id:1}})
+  //   updateDoc(docRefAll, { setTwo:{ two:"",id:2 }})
+  //   updateDoc(docRefAll, { setThree:{ three:"",id:3 } })
+  //   updateDoc(docRefAll, { setFour:{ four:"",id:4 } })
+  //   updateDoc(docRefAll, { setFive:{ five:"",id:5 } })
+  //   updateDoc(docRefAll, { setSix:{ six:"",id:6 } })
+  //   updateDoc(docRefAll, { setSeven:{ seven:"",id:7 } })
+  //   updateDoc(docRefAll, { setEight:{ eight:"",id:8 } })
+  //   updateDoc(docRefAll, { setNine:{ nine:"",id:9 } })
+  //   updateDoc(docRefAll, { Disabled:{ Disabled:false}})
+  //   setA(0)
+  // };
+  
+
+
+
+const docRefAll = doc(db, 'game'+gameId,'game'+gameId); 
+function handleSubmit(e) {
+  e.preventDefault();
+  if (board.id === a && board.one === '' && turn.playerTurn === 1){
+  updateDoc(docRefAll, { setOne:{ one:playerOne,id:1}})
+  updateDoc(docRefAll, { join:{ playerTurn:2,friend:'game'+gameId,host:gameId,joined:true,lobby:'game'+gameId}})
+   setA(0)
+  }
+    if (board2.id === a && board2.two === '' && turn.playerTurn === 1){
+  updateDoc(docRefAll, { setTwo:{ two:playerOne,id:2} })
+  updateDoc(docRefAll, { join:{ playerTurn:2,friend:'game'+gameId,host:gameId,joined:true,lobby:'game'+gameId}})
+   setA(0)
+  }
+   if (board3.id === a && board3.three === '' && turn.playerTurn === 1){
+    updateDoc(docRefAll, { setThree:{ three:playerOne,id:3 } })
+    updateDoc(docRefAll, { join:{ playerTurn:2,friend:'game'+gameId,host:gameId,joined:true,lobby:'game'+gameId}})
+   setA(0)
+  }
+  if (board4.id === a && board4.four === '' && turn.playerTurn === 1){
+    updateDoc(docRefAll, { setFour:{ four:playerOne,id:4} })
+    updateDoc(docRefAll, { join:{ playerTurn:2,friend:'game'+gameId,host:gameId,joined:true,lobby:'game'+gameId}})
+   setA(0)
+  }
+  if (board5.id === a && board5.five === '' && turn.playerTurn === 1){
+    updateDoc(docRefAll, { setFive:{ five:playerOne,id:5} })
+    updateDoc(docRefAll, { join:{ playerTurn:2,friend:'game'+gameId,host:gameId,joined:true,lobby:'game'+gameId}})
+   setA(0)
+  }
+  if (board6.id === a && board6.six === '' && turn.playerTurn === 1){
+    updateDoc(docRefAll, { setSix:{ six:playerOne,id:6 } })
+    updateDoc(docRefAll, { join:{ playerTurn:2,friend:'game'+gameId,host:gameId,joined:true,lobby:'game'+gameId}})
+   setA(0)
+  }
+  if (board7.id === a && board7.seven === '' && turn.playerTurn === 1){
+    updateDoc(docRefAll, { setSeven:{ seven:playerOne,id:7 } })
+    updateDoc(docRefAll, { join:{ playerTurn:2,friend:'game'+gameId,host:gameId,joined:true,lobby:'game'+gameId}})
+   setA(0)
+  }
+  if (board8.id === a && board8.eight === '' && turn.playerTurn === 1){
+    updateDoc(docRefAll, { setEight:{ eight:playerOne,id:8 } })
+    updateDoc(docRefAll, { join:{ playerTurn:2,friend:'game'+gameId,host:gameId,joined:true,lobby:'game'+gameId}})
+   setA(0)
+  }
+  if (board9.id === a && board9.nine === '' && turn.playerTurn === 1){
+    updateDoc(docRefAll, { setNine:{ nine:playerOne,id:9} })
+    updateDoc(docRefAll, { join:{ playerTurn:2,friend:'game'+gameId,host:gameId,joined:true,lobby:'game'+gameId}})
+   setA(0)
+  } 
+  
 }
 
 
 
-function B(){
-  board.map((board) => {
-    const lobby = board.id
-    const lobbyId = 'game'+board.host
-    const docRef=doc(db,lobbyId,lobby); const payload = buddy=== ''? { DisabledOne: true , one : playerOne }:{DisabledOne: true ,one:playerTwo}; updateDoc(docRef, payload);
-  })
 
-
-}
-
-function C(){
-  board.map((board) => {
-    const lobby = board.id
-    const lobbyId = 'game'+board.host
-    const docRef=doc(db,lobbyId,lobby); const payload = buddy=== ''? { DisabledTwo: true , two : playerOne }:{DisabledTwo: true ,two:playerTwo}; updateDoc(docRef, payload);
-  })
-
-}
-
-function D(){
-  board.map((board) => {
-    const lobby = board.id
-    const host = 'game'+board.host
-    const docRef=doc(db,host,board.id); const payload = buddy=== ''? {DisabledThree: true ,three:playerOne  }: {DisabledThree: true ,three:playerTwo}; updateDoc(docRef, payload);
-  })
-}
-
-function E(){
-  board.map((board) => {
-    const host = 'game'+board.host
-    const docRef=doc(db,host,board.id); const payload = buddy=== ''? {DisabledFour: true , four: playerOne }:{ DisabledFour: true ,four:playerTwo}; updateDoc(docRef, payload);
-  })
-}
-
-function F(){
-  board.map((board) => {
-    const host = 'game'+board.host
-    const docRef=doc(db,host,board.id); const payload = buddy=== ''? { DisabledFive: true ,five :playerOne  }:{DisabledFive: true ,five:playerTwo}; updateDoc(docRef, payload);
-  })
-}
-
-function G(){
-  board.map((board) => {
-    const host = 'game'+board.host
-    const docRef=doc(db,host,board.id); const payload = buddy=== ''? { DisabledSix: true ,six:playerOne }:{DisabledSix: true ,six:playerTwo}; updateDoc(docRef, payload);
-  })
-}
-
-function H(){
-  board.map((board) => {
-    const host = 'game'+board.host
-    const docRef=doc(db,host,board.id); const payload = buddy=== ''? { DisabledSeven: true ,seven:playerOne }:{DisabledSeven: true ,seven:playerTwo}; updateDoc(docRef, payload);
-
-  })
-}
-
-function I(){
-  board.map((board) => {
-    const host = 'game'+board.host
-    const docRef=doc(db,host,board.id); const payload = buddy=== ''? { DisabledEight: true , eight:playerOne }:{ DisabledEight: true ,eight:playerTwo}; updateDoc(docRef, payload);
-
-  })
-}
-
-//not happy with the amount of functions but will be updated to be much shorter and cleaner
-
-// setPoints((prev) => [...prev,20]); setP2Points((prev) => [...prev,'B']);
 
 
 return (
 
-  <div className='entireboard'>
- 
- 
- {board.map((board,i) =>  {  
-    if(board.joined === false) {
-      return null
-    } else {
-      return <div key={i}> <Box>     
-      <div><Functions/> </div>
-      
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='grid'> 
-      <Grid item xs={12}>
-      <div className='btn-div'>
-        
-      <HR/>
-      
-    <hr className='rightline'/>
-    <hr className='leftline'/>
-         <button className='board' disabled={board.DisabledZero} onClick={() => {A() }}> {board.zero}  </button> 
-         <button className='board'  disabled={board.DisabledOne}  onClick={() => {B() }}> {board.one} </button> 
-         <button className='board'  disabled={board.DisabledTwo}  onClick={() => {C() }}> {board.two} </button>   </div>
-        
-      </Grid>
-      <Grid item xs={12}>
-    
-      <div className='btn-div'> 
-      <hr style={{marginTop:'-130px'}} className='hrfield'/>
-      <hr style={{marginTop:'120px'}} className='hrfield'/>
-      <button className='board' disabled={board.DisabledThree}  onClick={() => {D() }}> {board.three} </button>
-      <button className='board'  disabled={board.DisabledFour}  onClick={() =>{E() }}> {board.four} </button>
-      <button className='board'  disabled={board.DisabledFive}  onClick={() =>{F() }}> {board.five} </button> </div>
-    
-      </Grid>
-      <Grid item xs={12}>
-    
-      <div className='btn-div'>
-      <button className='board'  disabled={board.DisabledSix}  onClick={() => {G() }}> {board.six} </button>
-      <button className='board'  disabled={board.DisabledSeven}  onClick={() => {H() }}> {board.seven} </button>
-      <button className='board' disabled={board.DisabledEight}  onClick={() => {I() }}> {board.eight} </button> </div>
-    
-      </Grid>
-      </Grid>
-       </Box> 
-       <div className='startandreset'>
-       <button style={{width:'120px',marginBottom:'20px'}} className="btnstart" onClick={handleStart} > Start Game </button>
-       <button className="btnstart" onClick={handleReset} > Reset Game </button>
-       </div>
-     
-       
-       </div>
-    }
-   
-   })}
+  <>
+  {returns === true && (
+    <div>
+<h2> No lobby found.Returning to main menu </h2>
+      {setTimeout(() => {
+                navigate("/")
+               },3000)}
+    </div>
+  )}
+  
 
-  </div>
+{returns === false && (<>
+<div className='entireboard'  style={zz.Disabled === true? {display:'none'}:{display:'block'}} >
+<form onSubmit={handleSubmit}>  
+   <div > <Box>     
+    <div><Functions/> </div>
+  <h2> {turn.playerTurn === 1? 'your turn' :'friend turn'} </h2>
+    <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='grid'> 
+    <Grid item xs={12}>
+    <div className='btn-div'>
+      
+    <HR/>
+    
+  <hr className='rightline'/>
+  <hr className='leftline'/>
+       <button className='board' disabled={zz.Disabled}  onClick={() => {setA(board.id) } } > {board.one} </button> 
+       <button className='board'  disabled={zz.Disabled} onClick={() => {setA(board2.id) } } > {board2.two}  </button> 
+       <button className='board'   disabled={zz.Disabled} onClick={() => {setA(board3.id) } } > {board3.three} </button>   </div>
+      
+    </Grid>
+    <Grid item xs={12}>
+  
+    <div className='btn-div'> 
+    <hr style={{marginTop:'-130px'}} className='hrfield'/>
+    <hr style={{marginTop:'120px'}} className='hrfield'/>
+    <button className='board' disabled={zz.Disabled}  onClick={() => {setA(board4.id) } } > {board4.four} </button>
+    <button className='board' disabled={zz.Disabled} onClick={() => {setA(board5.id) } } > {board5.five} </button>
+    <button className='board' disabled={zz.Disabled}  onClick={() => {setA(board6.id) } } > {board6.six} </button> </div>
+  
+    </Grid>
+    <Grid item xs={12}>
+  
+    <div className='btn-div'>
+    <button className='board'  disabled={zz.Disabled}  onClick={() => {setA(board7.id) } } > {board7.seven} </button>
+    <button className='board'  disabled={zz.Disabled}   onClick={() => {setA(board8.id) } } > {board8.eight} </button>
+    <button className='board' disabled={zz.Disabled} onClick={() => {setA(board9.id) } } > {board9.nine}  </button> </div>
+  
+    </Grid>
+    </Grid>
+     </Box> 
+  
+     
+     </div>
+</form>
+</div>
+
+<div className='startandreset'>
+     <button style={{width:'120px',marginBottom:'10px',marginTop:'10px'}} className="btnstart" onClick={handleStart} > Start Game </button>
+     </div>
+
+</>)}
+  
+ 
+  </>
 )
 
 }

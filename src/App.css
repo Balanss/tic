@@ -78,6 +78,13 @@ hr{
 }
 
 .wincon7{
+    transform: rotate(90deg);
+    position: relative;
+    top: -13px;
+    left: 153px;
+}
+
+.wincon4{
     transform: rotate(50deg);
     position: relative;
     top: -27px;
@@ -85,33 +92,26 @@ hr{
 
 }
 
-.wincon4{
-   transform:rotate(90deg);
-    position: relative;
-    top: -11px;
-    left: 59px;
-
-}
-
 .wincon5{
-    transform: rotate(90deg);
+
     position: relative;
-    top: -13px;
-    left: 149px;
+    top: -24px;
+   left: 287px;
+transform: rotate(130deg);
 }
 
 .wincon6{
+    transform: rotate(90deg);
+    position: relative;
+    top: -13px;
+    left: 63px;
+}
+
+.wincon8{
     rotate: 90deg;
     position: relative;
     top: -9px;
     left: 240px;
-}
-
-.wincon8{
-    position: relative;
-     top: -24px;
-    left: 287px;
-transform: rotate(130deg);
 }
 
 body,html {
@@ -263,6 +263,7 @@ margin-bottom: 25px;
     margin: auto !important;
    border-radius: 20px;
    background-position: right;
+   height: 475px;
 }
 
 .css-10mzr36-MuiGrid-root>.MuiGrid-item{
@@ -290,10 +291,11 @@ margin-bottom: 25px;
 }
 
 .startandreset{
-
-    width: 90vw;
+    width: 80vw;
     margin: auto;
-    padding-bottom: 10px;
+    padding: 10px;
+    background-color: slategrey;
+    margin-top: 10px;
 }
 
 .btnstart  {

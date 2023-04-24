@@ -3,6 +3,7 @@ import { Routes, HashRouter,Route } from 'react-router-dom'
 import "./App.css"
 
 import Game from './Components/Game'
+import Loading from './Components/Loading'
 function App() {
 
 const Create = lazy(() => import ("./Components/Create"))
@@ -14,6 +15,7 @@ const Create = lazy(() => import ("./Components/Create"))
   <Routes>
    <Route path="/" element={<Create/>}></Route>
    <Route path="/game" element={<Game/>}></Route>
+   <Route path="/loading" element={<Loading/>}></Route>
   </Routes>
    </Suspense>
 </HashRouter>

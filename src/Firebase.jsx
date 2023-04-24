@@ -20,9 +20,8 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FB_APP_ID,
 };
 
-// Initialize Firebase
+
 const app = firebase.initializeApp(firebaseConfig)
-// const fs = firebase.firestore();
 const db =getFirestore(app)
 
 export { db }
